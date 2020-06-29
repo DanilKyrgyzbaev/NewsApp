@@ -31,16 +31,23 @@ dependencies {
     //Material Components for Android
     implementation 'com.google.android.material:material:1.1.0'
     //Image
-    implementation 'de.hdodenhof:circleimageview:1.2.1'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
     //Glide
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
     //CardView
     implementation 'androidx.cardview:cardview:1.0.0'
     //RoundedImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    //jsoup
+    implementation 'org.jsoup:jsoup:1.10.3'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 }

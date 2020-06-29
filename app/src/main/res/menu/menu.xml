@@ -6,7 +6,6 @@
         android:title="@string/news_menu"
         android:icon="@drawable/ic_news"
         app:showAsAction="ifRoom"/>
-
     <item
         android:id="@+id/category_menu"
         android:title="@string/category_menu"
