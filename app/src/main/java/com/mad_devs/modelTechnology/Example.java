@@ -1,5 +1,5 @@
 
-package com.mad_devs.modelXkcd;
+package com.mad_devs.modelTechnology;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -9,13 +9,19 @@ public class Example {
 
     @SerializedName("status")
     @Expose
-    private String status;
+    public String status;
     @SerializedName("feed")
     @Expose
     public Feed feed;
     @SerializedName("items")
     @Expose
-    private List<Item> items = null;
+    public List<Item> items;
+
+    public Example(String status , Feed feed , List<Item> items) {
+        this.status = status;
+        this.feed = feed;
+        this.items = items;
+    }
 
     public String getStatus() {
         return status;

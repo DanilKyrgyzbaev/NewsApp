@@ -13,7 +13,6 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_launcher );
 
-
         Handler handler = new Handler ();
         handler.postDelayed ( new Runnable () {
             @Override

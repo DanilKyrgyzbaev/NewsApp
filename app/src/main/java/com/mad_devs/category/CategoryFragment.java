@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 
 import com.mad_devs.newsapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class CategoryFragment extends Fragment {
 
     public CategoryFragment() {

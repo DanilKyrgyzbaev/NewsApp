@@ -1,9 +1,10 @@
 
-package com.mad_devs.modelXkcd;
+package com.mad_devs.modelTechnology;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Item {
 
@@ -36,7 +37,7 @@ public class Item {
     private Enclosure enclosure;
     @SerializedName("categories")
     @Expose
-    private List<Object> categories = null;
+    private List<String> categories = null;
 
     public String getTitle() {
         return title;
@@ -110,11 +111,11 @@ public class Item {
         this.enclosure = enclosure;
     }
 
-    public List<Object> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Object> categories) {
+    public void setCategories(List<String> categories) {
         this.categories = categories;
     }
 

@@ -2,12 +2,8 @@ package com.mad_devs.model;
 
 import java.util.List;
 
-/**
- * Created by reale on 5/5/2017.
- */
+public class RSSObject {
 
-public class RSSObject
-{
     public String status;
     public Feed feed;
     public List<Item> items;

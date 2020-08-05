@@ -17,9 +17,6 @@ import com.mad_devs.model.RSSObject;
 import com.mad_devs.newsapp.R;
 
 
-/**
- * Created by reale on 5/5/2017.
- */
 
 class FeedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
 
@@ -82,7 +79,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedViewHolder> {
         holder.txtTitle.setText(rssObject.getItems().get(position).getTitle());
         holder.txtPubDate.setText(rssObject.getItems().get(position).getPubDate());
         holder.txtContent.setText(rssObject.getItems().get(position).getContent());
-        Glide.with (holder.itemView).load ( rssObject.feed.image ).into ( holder.imageView );
+        Glide.with (holder.itemView).load ( rssObject.feed.getImage ()).into ( holder.imageView );
 
 
 

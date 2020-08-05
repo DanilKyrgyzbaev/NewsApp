@@ -1,5 +1,5 @@
 
-package com.mad_devs.modelXkcd;
+package com.mad_devs.modelTechnology;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -6,8 +6,7 @@ import java.util.List;
  * Created by reale on 5/5/2017.
  */
 
-public class Item
-{
+public class Item {
     public String title;
     public String pubDate;
     public String link;
