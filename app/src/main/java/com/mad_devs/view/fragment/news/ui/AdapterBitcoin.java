@@ -47,7 +47,7 @@ public class AdapterBitcoin extends RecyclerView.Adapter<AdapterBitcoin.BitcoinV
         return arrayList.size ();
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+    public void initListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -57,7 +57,7 @@ public class AdapterBitcoin extends RecyclerView.Adapter<AdapterBitcoin.BitcoinV
         notifyDataSetChanged ();
     }
 
-    public class BitcoinViewHolder extends RecyclerView.ViewHolder {
+    public class BitcoinViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView title;
         private TextView desc;
@@ -80,7 +80,7 @@ public class AdapterBitcoin extends RecyclerView.Adapter<AdapterBitcoin.BitcoinV
             time = itemView.findViewById(R.id.time);
             imageView = itemView.findViewById(R.id.img);
 
-            itemView.setOnClickListener ( v -> onItemClickListener.onItemClickListener(getAdapterPosition()) );
+            itemView.setOnClickListener ( v -> onItemClickListener.onItemClickListener( v , getAdapterPosition()) );
 
         }
 
@@ -102,6 +102,14 @@ public class AdapterBitcoin extends RecyclerView.Adapter<AdapterBitcoin.BitcoinV
 
         }
 
+        @Override
+        public void onClick(View v) {
+            onItemClickListener.onItemClickListener(v, getAdapterPosition());
+
+
+            //        getSupportFragmentManager().beginTransaction().replace(R.id.container,new FragmentSightDetailed() ).commit();
+            //        Toast.makeText(itemView.getContext(), "Item clicked. "+textViewSightsName.getText(), Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

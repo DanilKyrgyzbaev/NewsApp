@@ -2,7 +2,6 @@ package com.mad_devs.view.fragment.news;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,19 +14,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mad_devs.OnItemClickListener;
 import com.mad_devs.data.model_Bitcoin.Article;
 import com.mad_devs.internet.R;
 import com.mad_devs.view.fragment.news.ui.AdapterBitcoin;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NewsFragment extends Fragment {
+public class NewsFragment extends Fragment implements OnItemClickListener {
 
     private NewsViewModel mViewModel;
     private RecyclerView recyclerView;
@@ -102,12 +103,12 @@ public class NewsFragment extends Fragment {
         SearchView searchView = null;
         if (searchMenuItem != null){
             searchView = (SearchView) searchMenuItem.getActionView ();
-            initListener ();
+//            initListener ();
         }
         if (searchView != null){
             searchView.setSearchableInfo ( searchManager.getSearchableInfo ( getActivity ().getComponentName ()));
         }
-        searchView.setQueryHint("Search Latest News...");
+        
         searchView.setOnQueryTextListener ( new SearchView.OnQueryTextListener () {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -142,6 +143,7 @@ public class NewsFragment extends Fragment {
 
         mViewModel.articleMutableLiveData.observe ( getViewLifecycleOwner() , example -> {
             Log.e ( "news Bitkoin" ,   "" );
+            articles = example.getArticles ();
             adapterBitcoin.update ( example.getArticles () );
 
         } );
@@ -158,22 +160,27 @@ public class NewsFragment extends Fragment {
         recyclerView.setHasFixedSize ( true );
         recyclerView_top_news.setHasFixedSize ( true );
         adapterBitcoin = new AdapterBitcoin ();
+        adapterBitcoin.initListener ( this );
         recyclerView.setAdapter ( adapterBitcoin );
         adapterTopNews = new AdapterTopNews ();
         recyclerView_top_news.setAdapter(adapterTopNews);
     }
-    private void initListener(){
-        adapterBitcoin.setOnItemClickListener ( position -> {
-            Log.e ( "lololo", position + "" );
-            Intent intent = new Intent(getActivity (), NewsDetailFragment.class);
-            Article article = articles.get ( position );
-            intent.putExtra("url", article.getUrl());
-            intent.putExtra("title", article.getTitle());
-            intent.putExtra("img",  article.getUrlToImage());
-            intent.putExtra("date",  article.getPublishedAt());
-            intent.putExtra("source",  article.getSource().getName());
-            intent.putExtra("author",  article.getAuthor());
-            startActivity ( intent );
-        } );
+
+    @Override
+    public void onItemClickListener(View v , int position) {
+        Log.e ( "lololo", position + "" );
+        NewsDetailFragment newsDetailFragment = NewsDetailFragment.getInstance ();
+        Bundle bundle = new Bundle();
+        bundle.putString ( "url",articles.get ( position ).getUrl ());
+        bundle.putString ( "title",articles.get ( position ).getTitle ());
+        bundle.putString ( "img",articles.get ( position ).getUrlToImage ());
+        bundle.putString ( "date",articles.get ( position ).getPublishedAt ());
+        bundle.putString ( "source", articles.get ( position ).getSource ().getName ());
+        bundle.putString ( "author", articles.get ( position ).getAuthor ());
+        newsDetailFragment.setArguments ( bundle );
+        FragmentTransaction transaction = getActivity ().getSupportFragmentManager ().beginTransaction ();
+        transaction.replace ( R.id.fragmentContainer,newsDetailFragment );
+        transaction.commit ();
+
     }
 }

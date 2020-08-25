@@ -70,6 +70,7 @@ tools:context="com.mad_devs.view.fragment.newsDetail.NewsDetailFragment">
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
             app:layout_collapseMode="pin"
+            app:menu="@menu/detail"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <LinearLayout
@@ -93,7 +94,6 @@ tools:context="com.mad_devs.view.fragment.newsDetail.NewsDetailFragment">
 
                 <TextView
                     android:id="@+id/subtitle_on_appbar"
-                    style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
                     android:text="Subtitle"
                     android:textSize="12dp"
                     android:layout_width="match_parent"
